@@ -17,14 +17,18 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Caser",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "src/tsconfig.app.json",
             "assets": [
+              "src/assets",
               "src/favicon.ico",
-              "src/assets"
+              "src/favicon.png",
+              "src/favicon.icns",
+              "src/favicon.256x256.png",
+              "src/favicon.512x512.png"
             ],
             "styles": [
               "src/styles.scss"
@@ -32,6 +36,23 @@
             "scripts": []
           },
           "configurations": {
+            "dev": {
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -64,6 +85,9 @@
             "browserTarget": "Caser:build"
           },
           "configurations": {
+            "dev": {
+              "browserTarget": "angular-electron:build:dev"
+            },
             "production": {
               "browserTarget": "Caser:build:production"
             }
@@ -80,11 +104,15 @@
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "tsConfig": "src/tsconfig.spec.json",
+            "karmaConfig": "src/karma.conf.js",
             "assets": [
+              "src/assets",
               "src/favicon.ico",
-              "src/assets"
+              "src/favicon.png",
+              "src/favicon.icns",
+              "src/favicon.256x256.png",
+              "src/favicon.512x512.png"
             ],
             "styles": [
               "src/styles.scss"
@@ -96,8 +124,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
             "exclude": [
